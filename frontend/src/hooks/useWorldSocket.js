@@ -15,7 +15,7 @@ export function useWorldSocket() {
   const connect = useCallback(() => {
     // Determine WS URL based on current location
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const wsUrl = 'ws://127.0.0.1:8000/ws';
 
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;

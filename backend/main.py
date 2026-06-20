@@ -1,10 +1,10 @@
 """
 FastAPI application entry point for the AI Civilization Simulator.
 
-Milestone 0:
+Milestone 1:
   - GET  /             → health check
-  - GET  /api/world    → full world state as JSON
-  - WS   /ws           → WebSocket skeleton (sends world state on connect)
+  - GET  /api/world    → full world state as JSON (terrain + resources)
+  - WS   /ws           → WebSocket (sends world state with resources on connect)
 """
 
 import json
@@ -49,7 +49,7 @@ async def health_check():
     return {
         "status": "ok",
         "project": "WorldSeed",
-        "milestone": 0,
+        "milestone": 1,
         "world_size": f"{world.width}x{world.height}",
     }
 

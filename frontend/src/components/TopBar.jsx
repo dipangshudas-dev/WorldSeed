@@ -23,7 +23,7 @@ export default function TopBar({ connected }) {
           WorldSeed
         </h1>
         <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-charcoal text-cool-gray">
-          M0
+          M1
         </span>
       </div>
 

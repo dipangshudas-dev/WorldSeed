@@ -13,6 +13,18 @@ const BIOME_COLORS = {
 };
 
 /**
+ * Resource node colors — distinct but harmonious with the terrain palette.
+ *   Food:  warm yellow-green
+ *   Wood:  rich forest green
+ *   Stone: neutral gray
+ */
+const RESOURCE_COLORS = {
+  food:  '#a3be5a',
+  wood:  '#2d6a30',
+  stone: '#8a8a8a',
+};
+
+/**
  * Grid-line color (subtle separation between cells)
  */
 const GRID_LINE_COLOR = 'rgba(255, 255, 255, 0.04)';
@@ -20,8 +32,9 @@ const GRID_LINE_COLOR = 'rgba(255, 255, 255, 0.04)';
 /**
  * WorldCanvas — renders the 50×50 world grid on an HTML5 Canvas.
  *
- * Milestone 0:
- *  - Fills cells with biome colors
+ * Milestone 1:
+ *  - Fills cells with biome colors (procedural terrain)
+ *  - Draws resource node indicators as small circles
  *  - Draws subtle grid lines
  *  - Overlays FPS counter and world size HUD
  *  - Resizes with the window
@@ -43,6 +56,9 @@ export default function WorldCanvas({ worldData }) {
 
     // Use biome_colors from server if available, fallback to local
     const colors = worldData.biome_colors || BIOME_COLORS;
+
+    // Resource list from server (Milestone 1)
+    const resources = worldData.resources || [];
 
     function resize() {
       const parent = canvas.parentElement;
@@ -95,6 +111,32 @@ export default function WorldCanvas({ worldData }) {
           ctx.lineTo(offsetX + gridW * cellSize, py);
         }
         ctx.stroke();
+      }
+
+      // Draw resource nodes (Milestone 1)
+      if (resources.length > 0) {
+        const radius = Math.max(2, cellSize * 0.28);
+        for (let i = 0; i < resources.length; i++) {
+          const r = resources[i];
+          const color = RESOURCE_COLORS[r.type];
+          if (!color) continue;
+
+          const cx_r = offsetX + r.x * cellSize + cellSize / 2;
+          const cy_r = offsetY + r.y * cellSize + cellSize / 2;
+
+          // Filled circle
+          ctx.beginPath();
+          ctx.arc(cx_r, cy_r, radius, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+
+          // Subtle glow ring for visibility
+          ctx.beginPath();
+          ctx.arc(cx_r, cy_r, radius + 1, 0, Math.PI * 2);
+          ctx.strokeStyle = color + '60';  // 37% opacity
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
       }
 
       // Draw subtle outer border around the grid
@@ -169,6 +211,16 @@ export default function WorldCanvas({ worldData }) {
             </svg>
             <span className="text-xs font-medium text-cool-gray font-mono">
               {worldData.width}×{worldData.height}
+            </span>
+          </div>
+        )}
+
+        {/* Resource Count Badge (Milestone 1) */}
+        {worldData && worldData.resources && (
+          <div className="flex items-center gap-1.5 rounded-md bg-zinc-panel/80 border border-charcoal px-2.5 py-1 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-amber/80" />
+            <span className="text-xs font-medium text-cool-gray font-mono">
+              {worldData.resources.length} <span className="text-cool-gray/60">resources</span>
             </span>
           </div>
         )}
