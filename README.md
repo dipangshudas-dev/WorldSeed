@@ -1,24 +1,48 @@
-# WorldSeed
+## Development Progress
 
-Watch autonomous agents build, evolve, and destroy their own civilization.
+* [x] Milestone 0 — Project Setup
+* [x] Milestone 1 — Procedural World Generation
+* [ ] Milestone 2 — Agent Survival
+* [ ] Milestone 3 — Resource Gathering
+* [ ] Milestone 4 — Building System
+* [ ] Milestone 5 — Dashboard UI
+* [ ] Milestone 6 — Agent Profiles
+* [ ] Milestone 7 — Relationships
+* [ ] Milestone 8 — Settlement Formation
+* [ ] Milestone 9 — Public Release
 
-## Vision
+## 🚀 Project Status
 
-WorldSeed is an emergent AI civilization simulator where autonomous agents are spawned into a world and allowed to survive, cooperate, compete, build settlements, and create their own history.
+### ✅ Milestone 0 — Project Setup
 
-The player does not control the world.
+* FastAPI backend initialized
+* React + Vite frontend initialized
+* WebSocket communication established
+* Static 50×50 world grid rendered on HTML5 Canvas
 
-The player observes.
+### ✅ Milestone 1 — Procedural World Generation
 
-## Documentation
+* Value Noise & Fractal Noise terrain generation
+* Natural biome distribution (Grass, Forest, Water, Mountain)
+* Forest clustering and terrain smoothing
+* Resource generation system
 
-- Project Analysis Report
-- PRD
-- System Design
-- Database Design
-- UI/UX Design
-- Development Roadmap
+  * Food Nodes
+  * Wood Nodes
+  * Stone Deposits
+* Resource overlay rendering on canvas
+* World state synchronization via WebSockets
 
-## Current Status
+### 🔄 Current Progress
 
-🚧 In Development
+Working on **Milestone 2 — Agent Survival**
+
+Planned Features:
+
+* Agent spawning
+* Hunger system
+* Energy system
+* Health system
+* Tick-based simulation loop
+* Agent rendering and movement
+* Death mechanics
