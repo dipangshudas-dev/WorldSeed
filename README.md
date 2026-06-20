@@ -1,4 +1,3 @@
-:wq
 # WorldSeed
 
 Watch autonomous agents build, evolve, and destroy their own civilization.
