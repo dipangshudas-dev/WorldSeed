@@ -1,3 +1,4 @@
+:wq
 # WorldSeed
 
 Watch autonomous agents build, evolve, and destroy their own civilization.
@@ -22,6 +23,3 @@ The player observes.
 ## Current Status
 
 🚧 In Development
-
-Current Milestone:
-- Project Setup
